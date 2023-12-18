@@ -83,7 +83,8 @@ def verify(conn, x509, errnum, depth, returncode):
     results.
     """
     if depth not in verified:
-        verified[depth]=f"verify:depth:{depth} {x509_dn(x509.get_subject().get_components())} - {errnum}: {VALIDATE_ERROR[errnum]}"
+        # verified[depth]=f"verify:depth:{depth} {x509_dn(x509.get_subject().get_components())} - {errnum}: {VALIDATE_ERROR[errnum]}"
+        verified[depth]=f"verify:depth:{depth} - {errnum}: {VALIDATE_ERROR[errnum]}"
     elif errnum:
         verified[depth]=f"{verified[depth]} - {errnum}: {VALIDATE_ERROR[errnum]}"
     return True
