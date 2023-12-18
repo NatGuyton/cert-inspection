@@ -1,0 +1,11 @@
+#!/bin/bash
+
+cd -- "$( dirname -- "${BASH_SOURCE[0]}" )"
+
+rm *.zip
+
+zip -r ../cert-inspection.zip . -x venv\* .git\*
+mv ../cert-inspection.zip .
+aws lambda update-function-code --function-name cert-inspection --zip-file fileb://cert-inspection.zip
+rm cert-inspection.zip
+

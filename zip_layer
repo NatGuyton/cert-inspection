@@ -1,0 +1,13 @@
+#!/bin/bash
+
+cd -- "$( dirname -- "${BASH_SOURCE[0]}" )"
+cd venv/lib64/python3.8/site-packages/../
+mv site-packages python
+
+zip -r ../../../cert-inspection-layer.zip python
+
+mv python site-packages
+
+#aws lambda update-function-code --function-name cert-inspection --zip-file fileb://cert-inspection.zip
+
+# FRom here I copied the zip to  cp cert-inspection-layer.zip /mnt/c/Users/micro/ and created the layer via console

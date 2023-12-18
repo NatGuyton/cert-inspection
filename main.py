@@ -239,9 +239,25 @@ def get_host_port_from_input(input: str):
         port = 443
     return hostname, port
 
-def lambda_handler():
+def lambda_handler(event, context):
     """lambda interface"""
     # Get the inputs and call process
+    hostname, port = get_host_port_from_input(event['host'])
+    servername = hostname
+    if 'servername' in event:
+        if event['servername']:
+            servername = event['servername']
+
+    # Clear any global vars
+    verified={}
+
+    results = process(hostname, port, servername)
+    
+    return { 
+        'event' : event, # if a test, this is the test json 
+        'results': results,
+        'context': json.dumps(context, default = str)
+    }
 
 def ifprint(key, dictionary, padding="  ", label=None):
     if key in dictionary:
