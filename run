@@ -1,0 +1,11 @@
+#!/bin/bash
+# Run a script with the virtual environment; this will put the virtual env bin dir first in your path
+#
+# Syntax: 
+#   ./run try
+#   ./run populateSKI.py
+
+cd -- "$( dirname -- "${BASH_SOURCE[0]}" )"
+. venv/bin/activate
+
+./$*

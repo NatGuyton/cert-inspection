@@ -1,0 +1,42 @@
+
+See where facebook.com trust comes from
+
+nat@NatsLaptop:~/git/cert-inspection$ ./run main.py facebook.com
+cert-inspection: facebook.com:443
+
+connection: TLSv1.3 256 bits using TLS_CHACHA20_POLY1305_SHA256
+CA Trust File: /home/nat/git/cert-inspection/venv/lib/python3.8/site-packages/certifi/cacert.pem
+
+0 (sent by server) verify:depth:0 /C=US/ST=California/L=Menlo Park/O=Meta Platforms, Inc./CN=*.facebook.com - 0: ok
+  subject: /C=US/ST=California/L=Menlo Park/O=Meta Platforms, Inc./CN=*.facebook.com
+  issuer: /C=US/O=DigiCert Inc/OU=www.digicert.com/CN=DigiCert SHA2 High Assurance Server CA
+  notBefore: Tue Sep 26 00:00:00 2023
+  notAfter: Mon Dec 25 23:59:05 2023
+  subjectAltName: DNS:*.facebook.com, DNS:*.facebook.net, DNS:*.fbcdn.net, DNS:*.fbsbx.com, DNS:*.m.facebook.com, DNS:*.messenger.com, DNS:*.xx.fbcdn.net, DNS:*.xy.fbcdn.net, DNS:*.xz.fbcdn.net, DNS:facebook.com, DNS:messenger.com
+  keyUsage: Digital Signature, Key Agreement
+  extendedKeyUsage: TLS Web Server Authentication, TLS Web Client Authentication
+  basicConstraints: CA:FALSE
+  serialnumber: 11148938743225331807617069790850783307
+  fingerprint: 71:0C:E5:1F:B4:CA:BE:DD:83:16:97:65:B7:E4:7B:21:0E:C5:CC:1A
+  subjectKeyIdentifier: D2:89:B9:3A:2F:85:98:6C:5E:F1:C6:A3:EE:E7:56:6D:EB:2F:38:51
+  authorityKeyIdentifier: 51:68:FF:90:AF:02:07:75:3C:CC:D9:65:64:62:A2:12:B8:59:72:3B
+
+1 (sent by server) verify:depth:1 /C=US/O=DigiCert Inc/OU=www.digicert.com/CN=DigiCert SHA2 High Assurance Server CA - 0: ok
+  subject: /C=US/O=DigiCert Inc/OU=www.digicert.com/CN=DigiCert SHA2 High Assurance Server CA
+  issuer: /C=US/O=DigiCert Inc/OU=www.digicert.com/CN=DigiCert High Assurance EV Root CA
+  notBefore: Tue Oct 22 12:00:00 2013
+  notAfter: Sun Oct 22 12:00:00 2028
+  keyUsage: Digital Signature, Certificate Sign, CRL Sign
+  extendedKeyUsage: TLS Web Server Authentication, TLS Web Client Authentication
+  basicConstraints: CA:TRUE, pathlen:0
+  serialnumber: 6489877074546166222510380951761917343
+  fingerprint: A0:31:C4:67:82:E6:E6:C6:62:C2:C8:7C:76:DA:9A:A6:2C:CA:BD:8E
+  subjectKeyIdentifier: 51:68:FF:90:AF:02:07:75:3C:CC:D9:65:64:62:A2:12:B8:59:72:3B
+nat@NatsLaptop:~/git/cert-inspection$ ls -l "subjectKeyIdentifier/C=US+++O=DigiCert Inc+++OU=www.digicert.com+++CN=DigiCert "*
+-rw-r--r-- 1 nat nat 1305 Dec 17 17:12 'subjectKeyIdentifier/C=US+++O=DigiCert Inc+++OU=www.digicert.com+++CN=DigiCert Assured ID Root G2'
+-rw-r--r-- 1 nat nat  850 Dec 17 17:12 'subjectKeyIdentifier/C=US+++O=DigiCert Inc+++OU=www.digicert.com+++CN=DigiCert Assured ID Root G3'
+-rw-r--r-- 1 nat nat 1293 Dec 17 17:12 'subjectKeyIdentifier/C=US+++O=DigiCert Inc+++OU=www.digicert.com+++CN=DigiCert Global Root G2'
+-rw-r--r-- 1 nat nat  838 Dec 17 17:12 'subjectKeyIdentifier/C=US+++O=DigiCert Inc+++OU=www.digicert.com+++CN=DigiCert Global Root G3'
+-rw-r--r-- 1 nat nat 1987 Dec 17 17:12 'subjectKeyIdentifier/C=US+++O=DigiCert Inc+++OU=www.digicert.com+++CN=DigiCert Trusted Root G4'
+
+
