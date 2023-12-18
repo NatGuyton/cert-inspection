@@ -38,20 +38,21 @@ instead of "/usr/bin/env python3" in each of the python files, and run them dire
 
 ## Usage
 
-# Preliminary Step
+### Preliminary Step
 
 Before using, you need to pre-stage a directory with the certs from your certifi module's trusted certs, 
 usually found in venv/lib/python3.X/site-packages/certifi/cacert.pem.
 (You may wish to append any private CAs you have to that file before this step)
 
 to do so, run:
+
 ```
 ./run populateSKI.py
 ```
 
 This will create a directory "subjectKeyIdentifier" and populate with cert data for performance.
 
-# Usage
+### Running
 
 You can run with no parameters for the syntax and examples:
 
