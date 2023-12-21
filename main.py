@@ -136,7 +136,7 @@ def process(hostname: str, port: int = 443, servername: str = None):
     try:
         conn.connect((hostname, port))
     except socket.gaierror:
-        raise SystemExit(f"Cannot resolve hostname {hostname}")
+        raise ValueError(f"Cannot resolve hostname {hostname}")
     conn.setblocking(1)
     if servername:
         conn.set_tlsext_host_name(servername.encode()) # SNI; needs to be before handshake step
@@ -242,23 +242,59 @@ def get_host_port_from_input(input: str):
 
 def lambda_handler(event, context):
     """lambda interface"""
-    # Get the inputs and call process
-    hostname, port = get_host_port_from_input(event['host'])
-    servername = hostname
-    if 'servername' in event:
-        if event['servername']:
-            servername = event['servername']
+    pretty=False
+    host = None
+    results = "nope"
 
-    # Clear any global vars
-    verified={}
+    if event:
+        if "queryStringParameters" in event:
+            if "host" in event["queryStringParameters"]:
+                host = event["queryStringParameters"]['host']
+            
+                hostname, port = get_host_port_from_input(host)
+                if "servername" in event["queryStringParameters"]:
+                    servername=event["queryStringParameters"]["servername"]
+                else:
+                    servername=""
+                
+                if "pretty" in event["queryStringParameters"]:
+                    pretty=True
 
-    results = process(hostname, port, servername)
-    
-    return { 
-        'event' : event, # if a test, this is the test json 
-        'results': results,
-        'context': json.dumps(context, default = str)
+                # # Clear any global vars
+                verified={}
+                # print(f"processing {hostname} {port} {servername}")
+            
+                try:
+                    results = process(hostname, port, servername)
+                except Exception as exc:
+                    results = {"error": str(exc)}
+            else:
+                results = "No query parameter 'host' given"
+        else: 
+            results = "No query parameters given"
+    else:
+        event = "No event given"
+
+    headers = {'content-type': 'application/json'}
+    # Ref: https://repost.aws/knowledge-center/malformed-502-api-gateway
+
+    # jsonify and perhaps prettify output
+    body = {
+        'event': event,
+        'results': results
     }
+    if pretty:
+        body = json.dumps(body, indent=4)
+    else:
+        body = json.dumps(body)
+
+    return { 
+        'statusCode': 200,
+        'isBase64Encoded': 'false',
+        'headers': headers,
+        'body': body
+    }
+
 
 def ifprint(key, dictionary, padding="  ", label=None):
     if key in dictionary:
