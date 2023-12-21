@@ -256,7 +256,7 @@ def lambda_handler(event, context):
                 if "servername" in event["queryStringParameters"]:
                     servername=event["queryStringParameters"]["servername"]
                 else:
-                    servername=""
+                    servername=hostname
                 
                 if "pretty" in event["queryStringParameters"]:
                     pretty=True
