@@ -117,7 +117,7 @@ def get_cert_details(cert):
 def process(hostname: str, port: int = 443, servername: str = None):
     """Process a target"""
     results = {'certs': {}}
-
+    verified = {}
     cafile=certifi.where()
     results['cafile'] = cafile
 
