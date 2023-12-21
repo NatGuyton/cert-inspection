@@ -278,7 +278,10 @@ def lambda_handler(event, context):
     else:
         event = "No event given"
 
-    headers = {'content-type': 'application/json'}
+    headers = {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+    }
     # Ref: https://repost.aws/knowledge-center/malformed-502-api-gateway
 
     # jsonify and perhaps include event input, prettify output
