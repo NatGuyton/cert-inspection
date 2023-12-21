@@ -245,6 +245,7 @@ def lambda_handler(event, context):
     pretty=False
     host = None
     results = "nope"
+    include_event = False
 
     if event:
         if "queryStringParameters" in event:
@@ -259,6 +260,8 @@ def lambda_handler(event, context):
                 
                 if "pretty" in event["queryStringParameters"]:
                     pretty=True
+                if "include_event" in event["queryStringParameters"]:
+                    include_event=True
 
                 # # Clear any global vars
                 verified={}
@@ -278,11 +281,12 @@ def lambda_handler(event, context):
     headers = {'content-type': 'application/json'}
     # Ref: https://repost.aws/knowledge-center/malformed-502-api-gateway
 
-    # jsonify and perhaps prettify output
+    # jsonify and perhaps include event input, prettify output
     body = {
-        'event': event,
         'results': results
     }
+    if include_event:
+        body['event'] = event
     if pretty:
         body = json.dumps(body, indent=4)
     else:
