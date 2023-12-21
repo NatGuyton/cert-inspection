@@ -82,6 +82,7 @@ def verify(conn, x509, errnum, depth, returncode):
     This is a callback function so that we can keep track of the verification
     results.
     """
+    global verified
     if depth not in verified:
         # verified[depth]=f"verify:depth:{depth} {x509_dn(x509.get_subject().get_components())} - {errnum}: {VALIDATE_ERROR[errnum]}"
         verified[depth]=f"verify:depth:{depth} - {errnum}: {VALIDATE_ERROR[errnum]}"
@@ -117,6 +118,7 @@ def get_cert_details(cert):
 def process(hostname: str, port: int = 443, servername: str = None):
     """Process a target"""
     results = {'certs': {}}
+    global verified
     verified = {}
     cafile=certifi.where()
     results['cafile'] = cafile
@@ -263,8 +265,6 @@ def lambda_handler(event, context):
                 if "include_event" in event["queryStringParameters"]:
                     include_event=True
 
-                # # Clear any global vars
-                verified={}
                 # print(f"processing {hostname} {port} {servername}")
             
                 try:
