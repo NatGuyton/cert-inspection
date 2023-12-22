@@ -1,0 +1,27 @@
+body {
+  margin: 0;
+  font-family: 'Black Ops One', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  background-color: #100e26;
+  padding: 10px 10px 10px 10px;
+}
+
+/*
+https://fonts.google.com/specimen/Oswald
+https://fonts.google.com/specimen/Nunito
+https://fonts.google.com/specimen/Ubuntu
+https://fonts.google.com/specimen/Rethink+Sans
+https://fonts.google.com/specimen/Teko
+https://fonts.google.com/specimen/Exo+2
+https://fonts.google.com/specimen/Black+Ops+One
+
+*/
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
