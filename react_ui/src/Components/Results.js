@@ -10,7 +10,7 @@ function Results(props) {
                 </div>
                 <div className="results">
                     <h2>Instructions</h2>
-                    <p>Enter one of the following:</p>
+                    <p>Enter one of the following and hit enter:</p>
                     <ul>
                         <li>hostname</li>
                         <li>hostname:port</li>
