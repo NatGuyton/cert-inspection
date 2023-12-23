@@ -4,26 +4,33 @@ function Results(props) {
     // if props.data does not exist, return instruction page
     if (props.data === null) {
         return (
-            <div className="results">
-                <h2>Instructions</h2>
-                <p>Enter one of the following:</p>
-                <ul>
-                    <li>hostname</li>
-                    <li>hostname:port</li>
-                    <li>URL</li>
-                </ul>
-            </div>
-        )
+            <>
+                <div className="error">
+                    {props.error}
+                </div>
+                <div className="results">
+                    <h2>Instructions</h2>
+                    <p>Enter one of the following:</p>
+                    <ul>
+                        <li>hostname</li>
+                        <li>hostname:port</li>
+                        <li>URL</li>
+                    </ul>
+                    <p>
+                        Some good candidates at <a href="https://badssl.com/">https://badssl.com/</a>.
+                    </p>
+                </div>
+            </>
+        );
     }
 
     const results = props.data.results;
-    console.log(results);
+    // console.log(results);
     return (
         <div className="results">
-            <h2>Results</h2>
             <p>
-                Hostname: {results.connection.hostname}
-                <br />Port: {results.connection.port}
+                Hostname: {results.connection.hostname}  Port: {results.connection.port}
+                <br/>SNI Servername: {results.connection.servername}
                 {results.connection.servername !== results.connection.hostname && <><br />Servername: {results.connection.servername}</>}
                 <br />Connection: {results.connection.protocol} {results.connection.bits} bits using {results.connection.cipher}
             </p>

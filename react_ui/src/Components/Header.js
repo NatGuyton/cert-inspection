@@ -1,4 +1,5 @@
 import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
 import { useHashFragment } from '../Hooks/HashFragment';
 
@@ -28,15 +29,26 @@ function Header(props) {
     }
 
     return (
-        <header className='App-header'>
-            Cert Inspection
-            <p>
-                <InputGroup className="mb-3">
-                    <InputGroup.Text id="basic-addon3">Target:</InputGroup.Text>
-                    <Form.Control id="host" aria-describedby="basic-addon3" onKeyDown={handleKeyDown} />
-                </InputGroup>
-                <br/>Some good candidates at <a href="https://badssl.com/">https://badssl.com/</a>.
-            </p>
+        <header className='App-header-input'>
+            <div>
+                <div className="title">Cert Inspection</div>
+                <div>
+                    <Form>
+                        <Form.Group className="mb-3" controlId="ControlInput1">
+                            <Form.Label>Target</Form.Label>
+                            <Form.Control id="host" aria-describedby="basic-addon3" onKeyDown={handleKeyDown} />
+                        </Form.Group>
+                    </Form>
+                    {/* <InputGroup className="mb-3">
+                        <Form.Label id="basic-addon3">Target:</Form.Label> 
+                        &nbsp; <Form.Control id="host" aria-describedby="basic-addon3" onKeyDown={handleKeyDown} />
+                    </InputGroup> */}
+                    {/* <Button variant="outline-secondary" id="button-addon1">Verify</Button> */}
+                </div>
+                <p className="error">
+                    {props.error}
+                </p>
+            </div>
         </header>
     )
 }

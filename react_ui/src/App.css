@@ -1,5 +1,5 @@
 .App {
-  text-align: center;
+  text-align: left;
   color: antiquewhite;
   border-radius: 5px;
   /* border-style: groove; */
@@ -23,9 +23,50 @@
   flex-direction: row;
   align-items: top;
   justify-content: left;
-  font-size: calc(10px + 2vmin);
 
   /* border-style: dashed; */
+}
+
+.App-header-input {
+  font-size: calc(10px + 2vmin);
+  padding-left: 1em;
+}
+
+.title {
+  font-size: calc(10px + 3vmin);
+}
+.syntax {
+  margin-left: 1em;
+  font-size: calc(10px + 1vmin);
+}
+
+.results {
+  margin-left: 2em;
+  margin-top: 1em;
+}
+
+.cert {
+  border-style:double;
+  border-width: 3px;
+  border-color: silver;
+  margin-bottom: 1em;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+}
+
+.cert-pem {
+  padding: 1em 1em 1em 1em;
+}
+.cert-pem pre {
+  color: silver;
+}
+
+.error {
+  margin-left: 10vmin;
+  color: red;
 }
 
 /* .App-link {

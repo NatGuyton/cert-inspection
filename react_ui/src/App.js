@@ -43,10 +43,10 @@ function App() {
 
       <div className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <Header onInput={fetchApiResult} />
+        <Header onInput={fetchApiResult} error={error} />
       </div>
       <div className="App-body">
-        <Results data={apiResult} />
+        <Results data={apiResult} isLoading={isLoading} />
       </div>
     </div>
   );
