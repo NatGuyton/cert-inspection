@@ -35,6 +35,11 @@ function App() {
     setIsLoading(false);
   }
 
+  let logo_class="App-logo";
+  if (isLoading) {
+    logo_class="App-logo-spinning";
+  }
+
 
   return (
     <div className="App">
@@ -42,7 +47,7 @@ function App() {
       <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Black+Ops+One" />
 
       <div className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <img src={logo} className={logo_class} alt="logo" />
         <Header onInput={fetchApiResult} error={error} />
       </div>
       <div className="App-body">
