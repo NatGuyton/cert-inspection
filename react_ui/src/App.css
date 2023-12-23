@@ -1,9 +1,33 @@
 .App {
   text-align: left;
-  color: antiquewhite;
+  /* color: antiquewhite; */
+  color: #eafffb;
+  /* text-shadow: #7cbcbe 1px 0 5px; */
+  /* text-shadow: 2px 2px 2px #7cbcbe; */
+  text-shadow: 1px 1px 1px #7cbcbe;
   border-radius: 5px;
   /* border-style: groove; */
   border-width: 2px;
+}
+
+.green {
+  color: green;
+  text-shadow: 2px 2px 2px #0e6516;
+}
+
+.red {
+  color: red;
+  text-shadow: 2px 2px 2px #9b1010;
+}
+
+.blue {
+  color: blue;
+  text-shadow: 2px 2px 2px #191ea6;
+}
+
+.value {
+  /* text-shadow: none; */
+  text-shadow: 1px 1px 1px #7cbcbe;
 }
 
 .App-logo {
@@ -66,6 +90,7 @@
 }
 .cert-pem pre {
   color: silver;
+  text-shadow: none;
 }
 
 .error {
