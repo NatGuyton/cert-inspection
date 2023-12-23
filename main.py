@@ -101,7 +101,7 @@ def get_cert_details(cert):
     this_cert['notAfter'] = get_date_from_asn1(cert.get_notAfter().decode('UTF-8'))    # ASN.1 TIME: YYYYMMDDhhmmssZ
     this_cert['expired'] = cert.has_expired()
     this_cert['SHA-1 fingerprint'] = cert.digest("sha1").decode("UTF-8")
-    this_cert['serialnumber'] = cert.get_serial_number()
+    this_cert['serialnumber'] = str(cert.get_serial_number())
     this_cert['version'] = cert.get_version()
     this_cert['signature_algorithm'] = cert.get_signature_algorithm().decode("UTF-8")
     for i in range(0,cert.get_extension_count()-1):

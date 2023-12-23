@@ -44,6 +44,11 @@ function Cert(props) {
                 {props.data.hasOwnProperty('subjectAltName') && <><br/>SAN: {props.data.subjectAltName}</>}
                 <br/>notBefore: {props.data.notBefore}
                 <br/>notAfter: {props.data.notAfter} {expiredtext}
+                {props.data.hasOwnProperty('keyUsage') && <><br/>keyUsage: {props.data.keyUsage}</>}
+                {props.data.hasOwnProperty('extendedKeyUsage') && <><br/>extendedKeyUsage: {props.data.extendedKeyUsage}</>}
+                {props.data.hasOwnProperty('basicConstraints') && <><br/>basicConstraints: {props.data.basicConstraints}</>}
+                {props.data.hasOwnProperty('signature_algorithm') && <><br/>signatureAlgorithm: {props.data.signature_algorithm}</>}
+                {props.data.hasOwnProperty('serialnumber') && <><br/>serialNumber: {props.data.serialnumber}</>}
                 <br/>Fingerprint: {props.data['SHA-1 fingerprint']}
                 {props.data.hasOwnProperty('subjectKeyIdentifier') && <><br/>subjectKeyIdentifier: {props.data.subjectKeyIdentifier}</>}
                 {props.data.hasOwnProperty('authorityKeyIdentifier') && <><br/>authorityKeyIdentifier: {props.data.authorityKeyIdentifier}</>}
