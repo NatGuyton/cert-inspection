@@ -16,22 +16,23 @@ function Results(props) {
                         <li>hostname:port</li>
                         <li>URL</li>
                     </ul>
-                    <p>
-                        Some good candidates at <a href="https://badssl.com/">https://badssl.com/</a>.
-                    </p>
+                    <p>Advanced Mode</p>
+                    <ul>
+                        <li>Target should contain hostname[:port], IP address[:port], or URL for the endpoint you want to reach</li>
+                        <li>Servername should contain the SNI name on the cert you wish to inspect, assuming it is not the default.   You can also specify a nonsense value such as "default" to get the default cert.</li>
+                    </ul>
                 </div>
             </>
         );
     }
 
     const results = props.data.results;
-    // console.log(results);
+
     return (
         <div className="results">
             <p>
                 Hostname: {results.connection.hostname}  Port: {results.connection.port}
-                <br/>SNI Servername: {results.connection.servername}
-                {results.connection.servername !== results.connection.hostname && <><br />Servername: {results.connection.servername}</>}
+                {results.connection.servername !== results.connection.hostname && <><br />SNI Servername: {results.connection.servername}</>}
                 <br />Connection: {results.connection.protocol} {results.connection.bits} bits using {results.connection.cipher}
             </p>
             {/* Loop through results.certs and present each cert object */}

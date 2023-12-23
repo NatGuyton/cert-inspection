@@ -39,7 +39,7 @@
   .App-logo-spinning { 
     height: 17vmin;
     pointer-events: none;
-    animation: App-logo-spin infinite 20s linear;
+    animation: App-logo-spin infinite 10s linear;
     z-index: -1;
   }
 }
@@ -48,7 +48,7 @@
   /* min-height: 100vh; */
   display: flex;
   flex-direction: row;
-  align-items: top;
+  align-items:flex-start;
   justify-content: left;
 
   /* border-style: dashed; */
@@ -58,6 +58,26 @@
   font-size: calc(10px + 2vmin);
   padding-left: 1em;
   flex-basis: 40%;
+}
+
+.titleBar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.advForm {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 0;
+}
+
+.dropSlightly {
+  padding-top: 0.5em;
 }
 
 .title {

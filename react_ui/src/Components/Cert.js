@@ -22,10 +22,8 @@ function Cert(props) {
         let dashindex = validation.indexOf(" - ", 0);
         if (dashindex !== undefined) {
             if (validation.includes(" - 0:", 0)) {
-                // validation = <>{validation.slice(0, dashindex)}<em style={{color: 'green'}}>{validation.slice(dashindex)}</em></>;
                 validation = <>{validation.slice(0, dashindex)}<em className="green">{validation.slice(dashindex)}</em></>;
             } else {
-                // validation = <>{validation.slice(0, dashindex)}<em style={{color: 'red'}}>{validation.slice(dashindex)}</em></>;
                 validation = <>{validation.slice(0, dashindex)}<em className="red">{validation.slice(dashindex)}</em></>;
             }
         }

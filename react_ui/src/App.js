@@ -1,4 +1,4 @@
-import react, {useState} from 'react';
+import {useState} from 'react';
 import logo from './logo.png';
 import './App.css';
 import Header from './Components/Header';
@@ -16,7 +16,10 @@ function App() {
     setApiResult(null);
     if (host.length > 0) {
       try {
-        const full_url = API_URL + '?pretty&host=' + encodeURIComponent(host);
+        let full_url = API_URL + '?host=' + encodeURIComponent(host);    
+        if (host.includes("/#/")) {
+          full_url = API_URL + '?host=' + encodeURIComponent(host.split("/#/")[0]) + '&servername=' + encodeURIComponent(host.split("/#/")[1]); 
+        }
         const response = await fetch(full_url);
         if (response.status.toString().startsWith('5')) {
           const data = await(response.text());
