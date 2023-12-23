@@ -27,7 +27,13 @@ function App() {
           throw new Error(`Something went wrong!  HTTP ${response.status.toString()}: ${data}`);
         }
         const data = await response.json();
-        setApiResult(data);
+        if (data.hasOwnProperty('results')) {
+          if (data.results.hasOwnProperty('error')) {
+            throw new Error(data.results.error);
+          } else {
+            setApiResult(data);
+          }
+        }
       } catch (error) {
         setError(error.message);
       }

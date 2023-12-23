@@ -34,16 +34,11 @@ function Header(props) {
                 <div className="title">Cert Inspection</div>
                 <div>
                     <Form>
-                        <Form.Group className="mb-3" controlId="ControlInput1">
+                        <Form.Group className="mb-3">
                             <Form.Label>Target</Form.Label>
                             <Form.Control id="host" aria-describedby="basic-addon3" onKeyDown={handleKeyDown} />
                         </Form.Group>
                     </Form>
-                    {/* <InputGroup className="mb-3">
-                        <Form.Label id="basic-addon3">Target:</Form.Label> 
-                        &nbsp; <Form.Control id="host" aria-describedby="basic-addon3" onKeyDown={handleKeyDown} />
-                    </InputGroup> */}
-                    {/* <Button variant="outline-secondary" id="button-addon1">Verify</Button> */}
                 </div>
                 <p className="error">
                     {props.error}
