@@ -9,32 +9,37 @@ function Header(props) {
     // detect hash change, set input bar, fetch query
     useHashFragment(props.onInput);
 
-    function clearTarget() {
-        window.location.href = window.location.href.split('#')[0] + `#/`;
-    }
+    // function clearTarget() {
+    //     window.location.href = window.location.href.split('#')[0] + `#/`;
+    // }
 
-    function handleFindTarget() {
-        // If pressing button for a repeat fetch, button should trigger query, otherwise url change will handle it
-        const {hash} = window.location;
-        let actual_hash = hash.slice(2);
-        if (actual_hash === document.getElementById('host').value) {
-            props.onInput(actual_hash);
-        } else {
-            if (document.getElementById('servername').value.trim() === "") {
-                window.location.href = window.location.href.split('#')[0] + `#/${document.getElementById('host').value.trim()}`;
-            } else {
-                window.location.href = window.location.href.split('#')[0] + `#/${document.getElementById('host').value.trim()}/#/${document.getElementById('servername').value.trim()}`;
-            }
-        }
-    }
+    // function handleFindTarget() {
+    //     // If pressing button for a repeat fetch, button should trigger query, otherwise url change will handle it
+    //     const {hash} = window.location;
+    //     let actual_hash = hash.slice(2);
+    //     if (actual_hash === document.getElementById('host').value) {
+    //         props.onInput(actual_hash);
+    //     } else {
+    //         if (document.getElementById('servername').value.trim() === "") {
+    //             window.location.href = window.location.href.split('#')[0] + `#/${document.getElementById('host').value.trim()}`;
+    //         } else {
+    //             window.location.href = window.location.href.split('#')[0] + `#/${document.getElementById('host').value.trim()}/#/${document.getElementById('servername').value.trim()}`;
+    //         }
+    //     }
+    // }
 
     // https://codingbeautydev.com/blog/react-get-input-value-on-enter/
     function handleKeyDown(event) {
         if (event.key === 'Enter') {
+            const url_pre_hash = window.location.href.split('#')[0];
+            // const url_pre_hash = window.location.href.split('#')[0].slice(0, -1);  // Remove trailing ?, but this causes page URL change problems
+
             if (document.getElementById('servername').value.trim() === "") {
-                window.location.href = window.location.href.split('#')[0].replace(/\?$/, '') + `#/${document.getElementById('host').value.trim()}`;
+                // console.log("Set URL to "+url_pre_hash + `#/${document.getElementById('host').value.trim()}`)
+                window.location.href = url_pre_hash + `#/${document.getElementById('host').value.trim()}`;
             } else {
-                window.location.href = window.location.href.split('#')[0].replace(/\?$/, '') + `#/${document.getElementById('host').value.trim()}/#/${document.getElementById('servername').value.trim()}`;
+                // console.log("Set URL to "+url_pre_hash + `#/${document.getElementById('host').value.trim()}/#/${document.getElementById('servername').value.trim()}`)
+                window.location.href = url_pre_hash + `#/${document.getElementById('host').value.trim()}/#/${document.getElementById('servername').value.trim()}`;
             }
         }
     }
@@ -48,18 +53,18 @@ function Header(props) {
     }
     let advButtonVariant = "outline-secondary";
     let inputForm = <Form.Group className="mb-3">
-        <Form.Label>Target</Form.Label>
+        <Form.Label id="target">Target</Form.Label>
         <Form.Control id="host" aria-describedby="basic-addon3" onKeyDown={handleKeyDown} />
         <input type="hidden" id="servername" value=""></input>
     </Form.Group>
     if (advancedChecked) {
         advButtonVariant = "primary";
         inputForm = <><Form.Group className="advForm">
-            <Form.Label className="dropSlightly">Target</Form.Label>
+            <Form.Label id="advtarget" className="dropSlightly">Target</Form.Label>
             &nbsp; <Form.Control id="host" aria-describedby="basic-addon3" onKeyDown={handleKeyDown} />
         </Form.Group>
         <Form.Group className="advForm mb-3">
-            <Form.Label className="dropSlightly">ServerName</Form.Label>
+            <Form.Label id="servername" className="dropSlightly">ServerName</Form.Label>
             &nbsp; <Form.Control id="servername" aria-describedby="basic-addon3" onKeyDown={handleKeyDown} />
         </Form.Group></>
     }
