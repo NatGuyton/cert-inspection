@@ -32,9 +32,9 @@ function Header(props) {
     function handleKeyDown(event) {
         if (event.key === 'Enter') {
             if (document.getElementById('servername').value.trim() === "") {
-                window.location.href = window.location.href.split('#')[0] + `#/${document.getElementById('host').value.trim()}`;
+                window.location.href = window.location.href.split('#')[0].replace(/\?$/, '') + `#/${document.getElementById('host').value.trim()}`;
             } else {
-                window.location.href = window.location.href.split('#')[0] + `#/${document.getElementById('host').value.trim()}/#/${document.getElementById('servername').value.trim()}`;
+                window.location.href = window.location.href.split('#')[0].replace(/\?$/, '') + `#/${document.getElementById('host').value.trim()}/#/${document.getElementById('servername').value.trim()}`;
             }
         }
     }
