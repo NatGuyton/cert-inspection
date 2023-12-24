@@ -64,7 +64,7 @@ function Header(props) {
             &nbsp; <Form.Control id="host" aria-describedby="basic-addon3" onKeyDown={handleKeyDown} />
         </Form.Group>
         <Form.Group className="advForm mb-3">
-            <Form.Label id="servername" className="dropSlightly">ServerName</Form.Label>
+            <Form.Label id="servernameLabel" className="dropSlightly">ServerName</Form.Label>
             &nbsp; <Form.Control id="servername" aria-describedby="basic-addon3" onKeyDown={handleKeyDown} />
         </Form.Group></>
     }
