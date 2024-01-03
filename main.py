@@ -104,7 +104,7 @@ def get_cert_details(cert):
     this_cert['serialnumber'] = str(cert.get_serial_number())
     this_cert['version'] = cert.get_version()
     this_cert['signature_algorithm'] = cert.get_signature_algorithm().decode("UTF-8")
-    for i in range(0,cert.get_extension_count()-1):
+    for i in range(0,cert.get_extension_count()):
         try:
             ext=cert.get_extension(i)
             this_cert[ext.get_short_name().decode('UTF-8')] = str(ext)
